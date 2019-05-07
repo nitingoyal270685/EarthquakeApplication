@@ -11,7 +11,7 @@ declare let google: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'earthquake Analysis';
+  title = 'Earthquake Analysis';
 
   // declaration for holding data from API
   featureList: EarthQuakeData[]=[];
@@ -24,25 +24,25 @@ export class AppComponent {
 
     // Getting service from data
     this.earthquakeService.get_data().subscribe(response => {
-     for (let p of response.features){
+     for (let feature of response.features){
 
       // populating data into model array
        
       this.featureList.push({
-       time:new Date( p.properties.time),
-      magnitude:  p.properties.mag,
-      place:  p.properties.place,
-       type: p.properties.type,
-       ycoordinate: p.geometry.coordinates[1],
-       xcoordinate: p.geometry.coordinates[0],
-       zcoordinate: p.geometry.coordinates[2]}
+       time:new Date( feature.properties.time),
+      magnitude:  feature.properties.mag,
+      place:  feature.properties.place,
+       type: feature.properties.type,
+       ycoordinate: feature.geometry.coordinates[1],
+       xcoordinate: feature.geometry.coordinates[0],
+       zcoordinate: feature.geometry.coordinates[2]}
        )}
 
       //  Initializing map
 
        let mapProp = {
         center: new google.maps.LatLng(this.featureList[0].ycoordinate, this.featureList[0].xcoordinate),
-        zoom: 12,
+        zoom: 4,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
@@ -50,7 +50,7 @@ export class AppComponent {
     }
   
     //Method to be called on click of td for moving marker to center of Eearthquake location
-    
+
     setCenter(xcoordinate,ycoordinate) {
       this.map.setCenter(new google.maps.LatLng(ycoordinate, xcoordinate));
   

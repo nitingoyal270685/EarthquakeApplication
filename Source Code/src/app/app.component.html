@@ -7,21 +7,21 @@
 </div>
 <div class="row">
   <!-- Section for tabular data -->
-    <div class="col-sm-3 col-md-6 col-lg-4">
+    <div class="col-sm-3 col-md-3 col-lg-3">
 
 <table>
   <tr class="feature" *ngFor="let feature of featureList" (click)="setCenter(feature.xcoordinate,feature.ycoordinate)">
      <td class="featureSet">
-    <b>Place:</b> {{feature.place}}<br/>
-    <b>Type:</b> {{feature.type}}<br/>
+    <b>Place:</b> {{feature.place}} <br/>
+    <b>Type:</b> {{feature.type}}<i style="margin-left: 40%;" class="fas fa-arrow-right"></i><br/>
     <b>Magnitude:</b> {{feature.magnitude }}<br/>
-    <b>Time:</b> {{feature.time}}<br/>
+    <b>Time:</b> {{feature.time | date:'medium'}}<br/>
   </td>
   </tr>
 </table>
 </div>
 <!-- Section for Map view -->
-<div class="col-sm-9 col-md-6 col-lg-8 mapClass">
+<div class="col-sm-9 col-md-9 col-lg-9 mapClass">
 <div #gmap style="height:100%"></div> 
 </div>
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
