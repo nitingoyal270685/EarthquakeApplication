@@ -9,6 +9,8 @@ export class EarthquakeService{
     }
 
     get_data(): any{
+      // Calling API for getting response for Earthquake data
+      
       return this.httpClient.get(this.baseUrl);
 }
 }

@@ -12,6 +12,8 @@ declare let google: any;
 })
 export class AppComponent {
   title = 'earthquake Analysis';
+
+  // declaration for holding data from API
   featureList: EarthQuakeData[]=[];
   @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
@@ -19,9 +21,14 @@ export class AppComponent {
   }
 
   ngOnInit(){
+
+    // Getting service from data
     this.earthquakeService.get_data().subscribe(response => {
      for (let p of response.features){
-       this.featureList.push({
+
+      // populating data into model array
+       
+      this.featureList.push({
        time:new Date( p.properties.time),
       magnitude:  p.properties.mag,
       place:  p.properties.place,
@@ -30,18 +37,20 @@ export class AppComponent {
        xcoordinate: p.geometry.coordinates[0],
        zcoordinate: p.geometry.coordinates[2]}
        )}
-       console.log(this.featureList)
+
+      //  Initializing map
+
        let mapProp = {
         center: new google.maps.LatLng(this.featureList[0].ycoordinate, this.featureList[0].xcoordinate),
         zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
-    });
-
-    
+    });    
     }
   
+    //Method to be called on click of td for moving marker to center of Eearthquake location
+    
     setCenter(xcoordinate,ycoordinate) {
       this.map.setCenter(new google.maps.LatLng(ycoordinate, xcoordinate));
   
