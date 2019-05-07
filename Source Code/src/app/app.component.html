@@ -1,0 +1,24 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+        Welcome to {{ title }}!
+      </h1>
+</div>
+<div class="row">
+    <div class="col-sm-3 col-md-6 col-lg-4">
+
+<table>
+  <tr class="feature" *ngFor="let feature of featureList" (click)="setCenter(feature.xcoordinate,feature.ycoordinate)">
+     <td class="featureSet">
+    <b>Place:</b> {{feature.place}}<br/>
+    <b>Type:</b> {{feature.type}}<br/>
+    <b>Magnitude:</b> {{feature.magnitude }}<br/>
+    <b>Time:</b> {{feature.time}}<br/>
+  </td>
+  </tr>
+</table>
+</div>
+<div class="col-sm-9 col-md-6 col-lg-8 mapClass">
+<div #gmap style="height:100%"></div> 
+</div>
+<router-outlet></router-outlet>

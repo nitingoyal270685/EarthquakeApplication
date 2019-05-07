@@ -1,0 +1,21 @@
+{
+  "name": "earthquake-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nightwatch.conf.js",
+  "scripts": {
+    "e2e-test": "nightwatch",
+    "e2e-test:chrome": "npm run e2e-test -- --env chrome",
+    "debug": "node --inspect-brk node_modules/.bin/nightwatch --env chrome"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chromedriver": "^2.36.0",
+    "cucumber": "^4.0.0",
+    "cucumber-pretty": "^1.4.0",
+    "nightwatch": "^0.9.20",
+    "nightwatch-cucumber": "^9.1.2",
+    "selenium-server": "^3.10.0"
+  }
+}

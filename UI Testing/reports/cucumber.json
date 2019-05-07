@@ -1,0 +1,62 @@
+[
+  {
+    "keyword": "Feature",
+    "name": "EarthquakeSite",
+    "line": 1,
+    "id": "earthquakesite",
+    "tags": [],
+    "uri": "features\\earthquakehome.feature",
+    "elements": [
+      {
+        "id": "earthquakesite;homepage-earthquake",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Homepage Earthquake",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I open Earthquake site`s home page",
+            "match": {
+              "location": "step_definitions\\steps.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7446000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "the title is \"EarthquakeAnalysis\"",
+            "match": {
+              "location": "step_definitions\\steps.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 51000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "the Home page exists",
+            "match": {
+              "location": "step_definitions\\steps.js:13"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 17419000000,
+              "error_message": "ERROR: Unable to locate element: \"//td[@class=\"featureSet\"][1]\" using: css selector\n    at World.Then (D:\\nightwatch-cucumber-example-master\\nightwatch-cucumber-example-master\\step_definitions\\steps.js:17:4)"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

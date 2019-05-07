@@ -1,0 +1,12 @@
+  .feature{
+      cursor: pointer;
+  }
+
+  .featureSet{
+    border: 2px solid #00ffff;
+    padding: 2px;
+  }
+
+  .mapClass{
+    height: 708px;
+  }
