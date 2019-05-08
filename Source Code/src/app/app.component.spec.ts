@@ -18,18 +18,21 @@ describe('AppComponent', () => {
     });
   }));
 
+  // checking if app is created
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
 
+  // checking if title is correct
   it(`should have as title 'Earthquake Analysis'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('Earthquake Analysis');
   });
 
+  // checking if h1 text is correct
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
@@ -37,6 +40,7 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to Earthquake Analysis!');
   });
 
+  // should call setCenter method call
   it('should call the setCenter method', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
@@ -47,6 +51,7 @@ describe('AppComponent', () => {
     });
   }));
 
+  // should call ngOnInit method call
   it('should call the ngOnInit method', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
@@ -56,5 +61,16 @@ describe('AppComponent', () => {
       expect(app.ngOnInit).toHaveBeenCalled();
     });
   }));
+
+    // should call initializeMap method call
+    it('should call the initializeMap method', async(() => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.debugElement.componentInstance;
+      spyOn(app, 'initializeMap');
+      app.initializeMap(-15.232, 22);
+      fixture.whenStable().then(() => {
+        expect(app.initializeMap).toHaveBeenCalled();
+      });
+    }));
 
 });

@@ -5,7 +5,7 @@ export class EarthQuakeData {
     magnitude: number;
     place: number;
     type: string;
-    xcoordinate: number;
-    ycoordinate: number;
-    zcoordinate: number;
+    xCoordinate: number;
+    yCoordinate: number;
+    zCoordinate: number;
 }
