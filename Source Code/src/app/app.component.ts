@@ -4,7 +4,8 @@ import { ViewChild } from '@angular/core';
 // Import services and models
 import { EarthquakeService } from '../services/earthquakeService';
 import { EarthQuakeData } from '../models/earthquakeModel';
-import { isNullOrUndefined } from 'util';
+import { isNullOrUndefined, error } from 'util';
+import {title,zoomLevel} from '../constants/constants'
 declare let google: any;
 
 @Component({
@@ -13,10 +14,12 @@ declare let google: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Earthquake Analysis';
+  title = title;
 
   // declaration for holding data from API
   featureList: EarthQuakeData[] = [];
+
+  noDataPresent = false;
   @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
   constructor(private earthquakeService: EarthquakeService) {
@@ -26,7 +29,7 @@ export class AppComponent {
 
     // Getting service from data
     this.earthquakeService.get_data().subscribe(response => {
-
+      this.noDataPresent = false;
       if (response != isNullOrUndefined) {
         for (let feature of response.features) {
 
@@ -47,9 +50,12 @@ export class AppComponent {
         this.initializeMap(this.featureList[0].yCoordinate, this.featureList[0].xCoordinate);
       }
       else {
-        window.alert("No data found for analysis from API");
+        this.noDataPresent = true;
       }
-    });
+    },(err)=>{
+      this.noDataPresent = true;
+      console.log("Following error occured",err)
+    })
   }
 
   initializeMap(lat, lng) {
@@ -57,20 +63,20 @@ export class AppComponent {
     //  Initializing map
     let mapProp = {
       center: new google.maps.LatLng(lat, lng),
-      zoom: 4,
+      zoom: zoomLevel,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
   }
 
-  //Method to be called on click of td for moving marker to center of Eearthquake location
-  setCenter(xCoordinate, yCoordinate) {
+  //Method to be called on click of td for moving marker to center of Earthquake location
+  setCenter(xCoordinate, yCoordinate, place) {
     this.map.setCenter(new google.maps.LatLng(yCoordinate, xCoordinate));
     let location = new google.maps.LatLng(yCoordinate, xCoordinate);
     let marker = new google.maps.Marker({
       position: location,
       map: this.map,
-      title: 'Earthquake point'
+      title: place
     });
   }
 }

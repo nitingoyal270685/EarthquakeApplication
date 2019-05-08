@@ -15,23 +15,6 @@ export class EarthquakeService {
 
   get_data(): any {
     // Calling API for getting response for Earthquake data
-    return this.httpClient.get(environment.earthQuakeServiceAPIUrl).pipe(
-      retry(1),
-      catchError(this.handleError));
+    return this.httpClient.get(environment.earthQuakeServiceAPIUrl);
   }
- 
-  // Method for error handling
-  handleError(error) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
-  }
-
 }

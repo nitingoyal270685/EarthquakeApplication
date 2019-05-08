@@ -31,7 +31,7 @@ module.exports = {
       },
       selenium: {
         cli_args: {
-          'webdriver.chrome.driver': 'lib/chromedriver.exe'
+          'webdriver.chrome.driver': 'lib/chromedriver_1.exe'
         }
       }
     },
@@ -43,7 +43,7 @@ module.exports = {
       },
       selenium: {
         cli_args: {
-          'webdriver.chrome.driver': 'lib/chromedriver.exe'
+          'webdriver.chrome.driver': 'lib/chromedriver_1.exe'
         }
       }
     }
